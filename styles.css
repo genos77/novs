@@ -118,15 +118,17 @@ strong{font-weight:600;color:var(--ink)}
   align-items:center;
   text-decoration:none;
   line-height:0;
+  flex-shrink:0;
 }
 .logo img{
   height:92px;
-  width:auto;
+  width:92px;             /* explicit width — SVG is square 1:1, prevents 0-width bug on iOS Safari */
   display:block;
+  object-fit:contain;
   transition:opacity .25s var(--ease);
 }
 .logo:hover img{opacity:.75}
-.foot-brand .logo img{height:120px}
+.foot-brand .logo img{height:120px;width:120px}
 .nav-links{display:flex;gap:40px}
 .nav-links a{
   color:var(--ink);
@@ -661,9 +663,9 @@ footer{
 
 @media(max-width:600px){
   .container{padding:0 24px}
-  .nav-inner{padding:10px 24px}
-  .logo img{height:72px}
-  .foot-brand .logo img{height:96px}
+  .nav-inner{padding:8px 20px}
+  .logo img{height:80px;width:80px}
+  .foot-brand .logo img{height:100px;width:100px}
   .hero{padding:120px 0 60px}
   .hero-actions{flex-direction:column;align-items:flex-start;gap:20px}
   .practice-row{grid-template-columns:1fr;gap:12px}
