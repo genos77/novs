@@ -20,7 +20,12 @@
   /* ---- Mobile menu ---- */
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
-  menuBtn.addEventListener('click', () => {
+  // ensure closed on every page load (defends against bfcache/persisted state)
+  menuBtn.classList.remove('open');
+  navLinks.classList.remove('open');
+
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     menuBtn.classList.toggle('open');
     navLinks.classList.toggle('open');
   });
@@ -29,6 +34,13 @@
       menuBtn.classList.remove('open');
       navLinks.classList.remove('open');
     });
+  });
+  // close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    }
   });
 
   /* ---- Smooth anchor scroll with nav offset ---- */
