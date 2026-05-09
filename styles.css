@@ -1,0 +1,679 @@
+/* =========================================================
+   Crossbridge Legal — premium law firm aesthetic
+   Inspired by Sullivan & Cromwell, Slaughter & May, Wachtell,
+   and Apple's restrained editorial layout.
+   ========================================================= */
+
+:root{
+  --black:#0a0a0a;
+  --ink:#1a1a1a;
+  --grey-1:#6e6e73;
+  --grey-2:#a1a1a6;
+  --grey-3:#d2d2d7;
+  --paper:#fafaf7;
+  --line:#e8e6e0;
+  --accent:#7a1f2b;            /* deep burgundy — used sparingly */
+  --ease:cubic-bezier(.25,.1,.25,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:#fff;
+  color:var(--ink);
+  font-weight:400;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+::selection{background:var(--ink);color:#fff}
+
+.container{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 32px;
+}
+
+/* =========================================================
+   TYPOGRAPHY — editorial serif headlines, restrained sans body
+   ========================================================= */
+
+h1,h2,h3,h4{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:500;
+  letter-spacing:-.015em;
+  color:var(--black);
+}
+
+h1{
+  font-size:clamp(3rem,6.6vw,6rem);
+  line-height:1.05;
+  letter-spacing:-.022em;
+  font-weight:500;
+}
+h2{
+  font-size:clamp(2.2rem,4.6vw,4rem);
+  line-height:1.1;
+  letter-spacing:-.018em;
+  font-weight:500;
+}
+h3{
+  font-size:clamp(1.4rem,2vw,1.75rem);
+  line-height:1.25;
+  letter-spacing:-.012em;
+  font-weight:500;
+}
+
+p{font-weight:400;color:var(--grey-1)}
+strong{font-weight:600;color:var(--ink)}
+
+.eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--grey-1);
+  margin-bottom:32px;
+}
+
+.label{
+  font-family:'Inter',sans-serif;
+  font-size:.74rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--grey-1);
+  margin-bottom:14px;
+}
+
+/* =========================================================
+   NAV — minimal, anchored
+   ========================================================= */
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s;
+}
+.nav.scrolled{
+  border-bottom-color:var(--line);
+  background:rgba(255,255,255,.95);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 32px;
+}
+.logo{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+  line-height:0;
+}
+.logo img{
+  height:92px;
+  width:auto;
+  display:block;
+  transition:opacity .25s var(--ease);
+}
+.logo:hover img{opacity:.75}
+.foot-brand .logo img{height:120px}
+.nav-links{display:flex;gap:40px}
+.nav-links a{
+  color:var(--ink);
+  text-decoration:none;
+  font-size:.94rem;
+  font-weight:500;
+  letter-spacing:-.005em;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--accent)}
+.menu-btn{
+  display:none;
+  width:24px;height:18px;
+  flex-direction:column;justify-content:space-between;
+}
+.menu-btn span{
+  display:block;height:1.5px;background:var(--ink);
+  transition:transform .3s,opacity .3s;
+}
+
+/* =========================================================
+   BUTTONS — minimal, sharp, confident
+   ========================================================= */
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:10px;
+  padding:18px 32px;
+  background:var(--black);
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  font-size:.92rem;
+  font-weight:500;
+  letter-spacing:-.005em;
+  text-decoration:none;
+  border-radius:0;
+  transition:background .25s,transform .25s;
+  cursor:pointer;
+}
+.btn:hover{background:var(--accent)}
+
+.btn-text{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--ink);
+  font-size:.94rem;
+  font-weight:500;
+  text-decoration:none;
+  padding:18px 4px;
+  border-bottom:1px solid var(--ink);
+  transition:color .25s,border-color .25s;
+}
+.btn-text span{transition:transform .3s var(--ease-out)}
+.btn-text:hover{color:var(--accent);border-color:var(--accent)}
+.btn-text:hover span{transform:translateX(4px)}
+
+/* =========================================================
+   HERO — split layout: editorial copy left, photograph right
+   ========================================================= */
+
+.hero{
+  padding:180px 0 160px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1.05fr;
+  gap:72px;
+  align-items:center;
+}
+.hero-text h1{
+  margin:0 0 36px;
+  font-size:clamp(2.6rem,5.4vw,4.8rem);
+  line-height:1.05;
+}
+.hero-lede{
+  font-size:1.18rem;
+  line-height:1.55;
+  color:var(--ink);
+  font-weight:400;
+  max-width:520px;
+  margin-bottom:48px;
+}
+.hero-actions{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+
+.hero-photo{
+  margin:0;
+  overflow:hidden;
+  aspect-ratio:4/5;            /* portrait — matches advocate consultation photo */
+  background:var(--paper);
+  max-height:78vh;
+}
+.hero-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 30%;   /* shift focus toward the advocate's face */
+  filter:saturate(.96);
+  transition:transform 1.6s var(--ease-out);
+}
+.hero-photo:hover img{transform:scale(1.02)}
+
+/* =========================================================
+   INTRO — two column editorial
+   ========================================================= */
+
+.intro{padding:0 0 200px}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:80px;
+  padding-top:80px;
+  border-top:1px solid var(--line);
+}
+.intro-left .eyebrow{margin:0}
+.intro-right h2{
+  font-size:clamp(1.7rem,2.6vw,2.2rem);
+  line-height:1.35;
+  letter-spacing:-.012em;
+  font-weight:500;
+  margin-bottom:32px;
+  color:var(--black);
+}
+.intro-right p{
+  font-size:1.08rem;
+  line-height:1.65;
+  color:var(--grey-1);
+  margin-bottom:24px;
+  max-width:680px;
+}
+
+/* =========================================================
+   SECTION HEAD — consistent across sections
+   ========================================================= */
+
+.section-head{
+  padding-bottom:80px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:80px;
+}
+.section-head .eyebrow{margin-bottom:24px}
+.section-head h2{
+  margin:0;
+  max-width:900px;
+}
+
+/* =========================================================
+   PRACTICE — list, not grid (NYT-style)
+   ========================================================= */
+
+.practice{padding:0 0 200px}
+.practice-list{
+  border-top:1px solid var(--line);
+}
+.practice-row{
+  display:grid;
+  grid-template-columns:80px 1fr 2fr;
+  gap:48px;
+  align-items:start;
+  padding:48px 0;
+  border-bottom:1px solid var(--line);
+  transition:padding .4s var(--ease);
+  cursor:default;
+}
+.practice-row:hover{padding-left:16px}
+.row-num{
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;
+  font-weight:500;
+  color:var(--grey-2);
+  letter-spacing:.05em;
+  padding-top:6px;
+}
+.row-title h3{
+  font-size:1.5rem;
+  font-weight:500;
+  color:var(--black);
+  letter-spacing:-.012em;
+  line-height:1.25;
+}
+.row-body p{
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--grey-1);
+  max-width:540px;
+}
+
+/* =========================================================
+   JURISDICTIONS — clean numeric list
+   ========================================================= */
+
+.jurisdictions{padding:0 0 200px}
+.jur-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.jur{
+  padding:48px 40px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;gap:24px;
+  transition:background .3s;
+}
+.jur:hover{background:var(--paper)}
+.jur span{
+  font-family:'Playfair Display',serif;
+  font-size:.9rem;
+  color:var(--grey-2);
+  letter-spacing:.05em;
+}
+.jur h4{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;
+  font-weight:500;
+  color:var(--black);
+  letter-spacing:-.012em;
+}
+
+/* =========================================================
+   PEOPLE — refined portrait grid
+   ========================================================= */
+
+.people{padding:0 0 200px}
+.people-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
+}
+.person figure{
+  margin:0 0 28px;
+  overflow:hidden;
+  aspect-ratio:4/5;
+}
+.person img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:saturate(.92);
+  transition:transform 1.4s var(--ease-out);
+}
+.person:hover img{transform:scale(1.03)}
+.person-info h3{
+  font-size:1.4rem;
+  font-weight:500;
+  margin-bottom:6px;
+  letter-spacing:-.012em;
+}
+.person-info .role{
+  font-family:'Inter',sans-serif;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--grey-1);
+  margin-bottom:18px;
+}
+.person-info .bio{
+  font-size:.98rem;
+  line-height:1.6;
+  color:var(--grey-1);
+}
+
+/* =========================================================
+   TESTIMONIAL — single, large, editorial
+   ========================================================= */
+
+.testimonial-large{
+  padding:140px 0;
+  background:var(--paper);
+  text-align:center;
+}
+.testimonial-large .eyebrow{margin-bottom:48px}
+.testimonial-large blockquote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.5rem,3vw,2.4rem);
+  line-height:1.4;
+  font-weight:400;
+  color:var(--black);
+  max-width:1000px;
+  margin:0 auto 48px;
+  letter-spacing:-.012em;
+  font-style:italic;
+}
+.testimonial-large cite{
+  display:block;
+  font-style:normal;
+}
+.testimonial-large cite strong{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:1rem;
+  color:var(--ink);
+  margin-bottom:6px;
+  letter-spacing:-.005em;
+}
+.testimonial-large cite span{
+  font-family:'Inter',sans-serif;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--grey-1);
+}
+
+/* =========================================================
+   INSIGHTS / FACTS — big numbers, restrained
+   ========================================================= */
+
+.insights{padding:200px 0}
+.facts{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+.fact{
+  padding:60px 32px 0 0;
+  border-right:1px solid var(--line);
+}
+.fact:last-child{border-right:none}
+.fact strong{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4rem,3.8vw,3.4rem);
+  font-weight:500;
+  letter-spacing:-.02em;
+  color:var(--black);
+  margin-bottom:14px;
+  line-height:1;
+}
+.fact p{
+  font-size:.94rem;
+  line-height:1.5;
+  color:var(--grey-1);
+  font-weight:500;
+}
+
+/* =========================================================
+   CONTACT — split layout
+   ========================================================= */
+
+.contact{padding:0 0 200px}
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:120px;
+  padding-top:80px;
+  border-top:1px solid var(--line);
+}
+.contact-left h2{
+  margin:0 0 32px;
+  font-size:clamp(2rem,3.6vw,3rem);
+}
+.contact-lede{
+  font-size:1.08rem;
+  line-height:1.6;
+  color:var(--grey-1);
+  margin-bottom:64px;
+  max-width:440px;
+}
+.contact-meta{
+  display:flex;flex-direction:column;gap:36px;
+}
+.contact-meta .label{margin-bottom:10px}
+.contact-meta p{
+  color:var(--ink);
+  font-size:.98rem;
+  line-height:1.5;
+}
+.contact-meta a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+.contact-meta a:hover{border-bottom-color:var(--ink)}
+
+/* form */
+.contact-form{
+  display:flex;flex-direction:column;gap:32px;
+}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{
+  font-size:.74rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--grey-1);
+}
+.field input,.field select,.field textarea{
+  font-family:inherit;
+  font-size:1rem;
+  font-weight:400;
+  color:var(--ink);
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--line);
+  padding:12px 0;
+  outline:none;
+  transition:border-color .2s;
+  width:100%;
+  resize:vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-bottom-color:var(--ink);
+}
+.contact-form .btn{
+  margin-top:16px;
+  align-self:flex-start;
+}
+
+/* =========================================================
+   FOOTER — minimal
+   ========================================================= */
+
+footer{
+  background:var(--paper);
+  padding:100px 0 40px;
+  border-top:1px solid var(--line);
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns:1.4fr 2fr;
+  gap:80px;
+  padding-bottom:80px;
+  border-bottom:1px solid var(--line);
+}
+.foot-brand .logo{font-size:1.6rem}
+.foot-brand p{
+  margin-top:20px;
+  font-size:.95rem;
+  line-height:1.6;
+  color:var(--grey-1);
+  max-width:260px;
+}
+.foot-cols{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:48px;
+}
+.foot-cols .label{margin-bottom:20px}
+.foot-cols ul{list-style:none}
+.foot-cols li{margin-bottom:10px;font-size:.94rem;line-height:1.5}
+.foot-cols a{
+  color:var(--ink);
+  text-decoration:none;
+  transition:color .2s;
+}
+.foot-cols a:hover{color:var(--accent)}
+.foot-cols ul.plain li{color:var(--grey-1)}
+
+.foot-bottom{
+  padding-top:32px;
+  display:flex;
+  justify-content:space-between;
+  font-size:.84rem;
+  color:var(--grey-1);
+  font-weight:400;
+}
+
+/* =========================================================
+   REVEAL animation — subtle fade only
+   ========================================================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+}
+.reveal.in{opacity:1;transform:none}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:980px){
+  body{font-size:16px}
+  .hero{padding:140px 0 100px}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero-text h1{font-size:clamp(2.2rem,6vw,3.2rem)}
+  .hero-photo{aspect-ratio:4/5;max-height:70vh}
+  .nav-links{
+    position:fixed;top:112px;left:0;right:0;
+    flex-direction:column;gap:0;padding:24px 32px;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    transform:translateY(-110%);
+    transition:transform .35s var(--ease);
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{padding:16px 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .nav-links a:last-child{border-bottom:none}
+  .menu-btn{display:flex}
+  .menu-btn.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-btn.open span:nth-child(2){opacity:0}
+  .menu-btn.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  .hero{padding:140px 0 80px}
+
+  .intro{padding-bottom:120px}
+  .intro-grid{grid-template-columns:1fr;gap:32px;padding-top:48px}
+
+  .practice,.jurisdictions,.people,.contact{padding-bottom:120px}
+  .insights{padding:120px 0}
+
+  .practice-row{
+    grid-template-columns:60px 1fr;
+    gap:24px;
+    padding:32px 0;
+  }
+  .practice-row .row-body{
+    grid-column:2;
+  }
+
+  .jur-grid{grid-template-columns:repeat(2,1fr)}
+  .people-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .fact{padding:48px 24px 0 0}
+  .fact:nth-child(2){border-right:none}
+
+  .testimonial-large{padding:100px 0}
+
+  .contact-grid{grid-template-columns:1fr;gap:64px}
+
+  .foot-grid{grid-template-columns:1fr;gap:48px}
+  .foot-cols{grid-template-columns:1fr 1fr}
+  .section-head{padding-bottom:48px;margin-bottom:48px}
+}
+
+@media(max-width:600px){
+  .container{padding:0 24px}
+  .nav-inner{padding:10px 24px}
+  .logo img{height:72px}
+  .foot-brand .logo img{height:96px}
+  .hero{padding:120px 0 60px}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:20px}
+  .practice-row{grid-template-columns:1fr;gap:12px}
+  .practice-row .row-num{font-size:.85rem}
+  .practice-row .row-body{grid-column:1}
+  .jur-grid{grid-template-columns:1fr}
+  .people-grid{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:nth-child(odd){border-right:1px solid var(--line)}
+  .fact:nth-child(even){border-right:none}
+  .foot-cols{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;gap:8px}
+}
